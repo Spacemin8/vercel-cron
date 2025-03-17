@@ -1,11 +1,11 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { NowRequest, NowResponse } from '@vercel/node';
 
-export default function handler(
-  request: VercelRequest,
-  response: VercelResponse,
-) {
-  response.status(200).json({
-    message: 'Hello from the API!',
-    timestamp: new Date().toISOString(),
-  });
-}
+export default async (req: NowRequest, res: NowResponse) => {
+    try {
+        // Your logic here
+        res.status(200).json({ message: 'Hello, world!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
